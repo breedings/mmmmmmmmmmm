@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>femboy land</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #terminal {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: black;
+        }
+
+        #prompt {
+            color: lime;
+            margin-right: 5px;
+        }
+
+        #command {
+            flex-grow: 1;
+            border: none;
+            background: none;
+            color: white;
+            font-family: monospace;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .command {
+            color: cyan;
+        }
+
+        .output {
+            margin: 5px 0;
+            white-space: pre;
+        }
+
+        .dark-green { color: rgb(0, 102, 14); }
+        .green { color: #237c2f; }
+        .light-green { color: #6DC690; }
+        .white { color: white; }
+        .light-blue { color: #96D8D8; }
+        .blue { color: #00ACC1; }
+        .dark-blue { color: #007A89; }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <div class="output"><span class="dark-green">88888888  8888b.  888  888</span>
+<span class="dark-green">    d88P      "88b 888  888</span>
+<span class="dark-green">   d88P   .d888888 888  888</span>
+<span class="green">  d88P    888  888 Y88b 888</span>
+<span class="green"> 88888888 "Y888888  "Y88888 </span>
+<span class="blue">                       888</span>
+<span class="blue">                  Y8b d88P </span>
+<span class="blue">                   "Y88P"</span>
+<span class="white">                 type "r" 
+        </div>
+    </div>
+    <div id="input">
+        <span id="prompt">C:\Users\nigger></span>
+        <input type="text" id="command" autofocus="">
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const commandInput = document.getElementById('command');
+
+        const commands = {
+            r: "idk i skidded this",
+        };
+
+        function executeCommand(input) {
+            const output = document.createElement('div');
+            output.classList.add('output');
+
+            if (input === 'clear') {
+                terminal.innerHTML = ` <div class="output"><span class="dark-green">88888888  8888b.  888  888</span>
+<span class="dark-green">    d88P      "88b 888  888</span>
+<span class="dark-green">   d88P   .d888888 888  888</span>
+<span class="green">  d88P    888  888 Y88b 888</span>
+<span class="green"> 88888888 "Y888888  "Y88888 </span>
+<span class="blue">                       888</span>
+<span class="blue">                  Y8b d88P </span>
+<span class="blue">                   "Y88P"</span>`;
+                return;
+            }
+
+            const commandSpan = document.createElement('span');
+            commandSpan.textContent = `C:\\Users\\nigger> ${input}`;
+            commandSpan.classList.add('command');
+
+            const result = document.createElement('div');
+            result.innerHTML = commands[input] || `Command not found: ${input}`;
+
+            output.appendChild(commandSpan);
+            output.appendChild(result);
+            terminal.appendChild(output);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        commandInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = commandInput.value.trim();
+                executeCommand(command);
+                commandInput.value = '';
+            }
+        });
+
+        document.getElementById('input').style.display = 'none';
+
+        setTimeout(() => {
+            document.getElementById('input').style.display = 'flex';
+            commandInput.focus();
+        }, 100);
+    </script>
+
+
+</body></html>
